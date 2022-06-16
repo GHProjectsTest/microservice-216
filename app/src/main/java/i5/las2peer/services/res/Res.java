@@ -71,7 +71,7 @@ public class Res extends RESTService {
 
   @Api
   @SwaggerDefinition(
-      info = @Info(title = "216", version = "0.0.0",
+      info = @Info(title = "216", version = "",
           description = "",
           termsOfService = "",
           contact = @Contact(name = "", email = "CAEAddress@gmail.com") ,
@@ -99,7 +99,8 @@ public class Res extends RESTService {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "res"),
+       @ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "badreq")
   })
   @ApiOperation(value = "gettest", notes = " ")
   public Response gettest(String body, @PathParam("id") String id) {
@@ -124,6 +125,15 @@ public class Res extends RESTService {
       
 
       return Response.status(HttpURLConnection.HTTP_OK).entity(res.toJSONString()).build();
+    }
+    // badreq
+    boolean badreq_condition = true;
+    if(badreq_condition) {
+      JSONObject req = new JSONObject();
+
+      
+
+      return Response.status(HttpURLConnection.HTTP_BAD_REQUEST).entity(req.toJSONString()).build();
     }
     return null;
   }
